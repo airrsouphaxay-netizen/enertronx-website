@@ -304,6 +304,102 @@
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
   }
+
+  /* language toggle */
+  .lang-toggle{
+    display:inline-flex; align-items:center; border:1px solid var(--line);
+    border-radius:100px; overflow:hidden; background:rgba(11,21,38,0.6);
+    margin-right:14px; flex-shrink:0;
+  }
+  .lang-toggle button{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.06em;
+    padding:6px 12px; border:0; background:transparent; color:var(--text-faint);
+    cursor:pointer; transition:color .2s, background .2s, text-shadow .25s;
+  }
+  .lang-toggle button:hover{ color:var(--text); text-shadow:0 0 10px rgba(0,212,255,0.7); }
+  .lang-toggle button[aria-pressed="true"]{
+    color:#04101f; background:linear-gradient(135deg,var(--indigo),var(--cyan)); font-weight:600;
+  }
+
+  /* ---- outer glow on hover ---- */
+  nav ul li a, .brand, .btn-primary, .btn-ghost, .nav-cta,
+  h1, h2, h3, h4, .eyebrow, .kicker, .step .tag, .svc-tags span,
+  .hero-metrics .num, .stat .n, .side-card .v, .pf-specs .v, .pf-tag, footer div{
+    transition:color .25s, text-shadow .25s, box-shadow .3s, border-color .25s, transform .25s, background .25s;
+  }
+
+  /* text glow */
+  nav ul li a:hover, .brand:hover, .pf-tag:hover, .kicker:hover,
+  .hero-metrics .num:hover, .stat .n:hover, .side-card .v:hover,
+  .pf-specs .v:hover, footer div:hover{
+    color:var(--text);
+    text-shadow:0 0 10px rgba(0,212,255,0.85), 0 0 26px rgba(0,212,255,0.45);
+  }
+  h1:hover, h2:hover, h3:hover, h4:hover{
+    text-shadow:0 0 14px rgba(0,212,255,0.55), 0 0 40px rgba(59,91,255,0.35);
+  }
+  h1 .grad:hover{ filter:drop-shadow(0 0 16px rgba(0,212,255,0.75)); }
+
+  /* pill / tag glow */
+  .eyebrow:hover, .step .tag:hover, .svc-tags span:hover{
+    border-color:rgba(0,212,255,0.6);
+    box-shadow:0 0 16px rgba(0,212,255,0.35), inset 0 0 14px rgba(0,212,255,0.08);
+    color:var(--cyan);
+  }
+
+  /* button glow */
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(0,212,255,0.55),
+               0 0 26px rgba(0,212,255,0.55),
+               0 0 66px rgba(59,91,255,0.45),
+               0 10px 34px -8px rgba(59,91,255,0.7);
+  }
+  .btn-ghost:hover{
+    border-color:var(--cyan);
+    box-shadow:0 0 22px rgba(90,123,255,0.45), inset 0 0 22px rgba(90,123,255,0.10);
+    text-shadow:0 0 10px rgba(0,212,255,0.6);
+  }
+  .nav-cta:hover{
+    box-shadow:0 0 24px rgba(0,212,255,0.65), 0 0 56px rgba(59,91,255,0.45);
+  }
+
+  /* card glow */
+  .feature:hover{
+    background:var(--panel);
+    box-shadow:inset 0 0 40px rgba(0,212,255,0.07), 0 0 30px rgba(0,212,255,0.14);
+  }
+  .svc-card:hover{
+    border-color:rgba(0,212,255,0.45); transform:translateY(-3px);
+    box-shadow:0 0 30px rgba(0,212,255,0.20), 0 0 70px rgba(59,91,255,0.18);
+  }
+  .pf-card:hover{
+    border-color:rgba(0,212,255,0.45); transform:translateY(-4px);
+    box-shadow:0 0 32px rgba(0,212,255,0.22), 0 0 76px rgba(59,91,255,0.18);
+  }
+  .step{transition:border-color .25s, box-shadow .3s, transform .25s;}
+  .step:hover{
+    border-color:rgba(0,212,255,0.4); transform:translateY(-3px);
+    box-shadow:0 0 26px rgba(0,212,255,0.18);
+  }
+  .stat{transition:background .25s, box-shadow .3s;}
+  .stat:hover{
+    background:var(--panel);
+    box-shadow:inset 0 0 36px rgba(0,212,255,0.07), 0 0 26px rgba(0,212,255,0.14);
+  }
+  .side-card{transition:border-color .25s, box-shadow .3s;}
+  .side-card:hover{
+    border-color:rgba(0,212,255,0.4);
+    box-shadow:0 0 22px rgba(0,212,255,0.18);
+  }
+  .svc-ic{transition:box-shadow .3s, border-color .25s;}
+  .svc-card:hover .svc-ic{
+    border-color:rgba(0,212,255,0.55);
+    box-shadow:0 0 22px rgba(0,212,255,0.35);
+  }
+  .brand-mark{transition:filter .3s;}
+  .brand:hover .brand-mark{ filter:drop-shadow(0 0 10px rgba(0,212,255,0.8)); }
+
 </style>
 </head>
 <body>
@@ -333,6 +429,10 @@
       <li><a href="#portfolio">ໂຄງການ</a></li>
       <li><a href="#dashboard">ແດັຊບອດ</a></li>
     </ul>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="lo" aria-pressed="true">ລາວ</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <a href="#cta" class="nav-cta">ນັດເບິ່ງເດໂມ</a>
   </div>
 </nav>
@@ -340,14 +440,14 @@
 <div class="hero">
   <div>
     <div class="eyebrow"><span class="dot"></span> AI ENERGY INTELLIGENCE PLATFORM</div>
-    <h1>ໃຫ້ <span class="grad">AI</span> ບໍລິຫານ<br>ພະລັງງານຂອງທ່ານ<br>ແບບ​ວິນາທີ​ຕໍ່​ວິນາທີ</h1>
+    <h1>Enertron <span class="grad">X</span><br>ເພີ່ມພູນຊີວິດ<br>ແຫ່ງອະນາຄົດ</h1>
     <p class="lead">Enertron X ເຊື່ອມຕໍ່ລະບົບໂຊລ່າ, ແບັດເຕີຣີ ແລະ ໂຫຼດຂອງໂຮງງານ ເຂົ້າກັບສະໝອງ AI ໜຶ່ງດຽວ — ພະຍາກອນ, ປັບແຕ່ງ ແລະ ປ້ອງກັນບັນຫາ ກ່ອນມັນເກີດຂຶ້ນ.</p>
     <div class="hero-actions">
       <a href="#cta" class="btn-primary">ເລີ່ມນຳໃຊ້ Enertron X</a>
       <a href="#how" class="btn-ghost">ເບິ່ງວິທີເຮັດວຽກ</a>
     </div>
     <div class="hero-metrics">
-      <div><span class="num">637 kWp+</span><span class="lbl">ກຳລັງທີ່ຄວບຄຸມຢູ່</span></div>
+      <div><span class="num">12.4 MWp</span><span class="lbl">ກຳລັງທີ່ຄວບຄຸມຢູ່</span></div>
       <div><span class="num">99.2%</span><span class="lbl">Uptime ລະບົບ</span></div>
       <div><span class="num">–18%</span><span class="lbl">ຄ່າໄຟ ຫຼັງ​ນຳໃຊ້</span></div>
     </div>
@@ -556,7 +656,7 @@
 <section id="portfolio">
   <div class="section-head">
     <span class="kicker">Portfolio</span>
-    <h2>ໂຄງການທີ່ Enertron X ກຳລັງເບິ່ງແຍງ</h2>
+    <h2>35 ໂຄງການ ທີ່ Enertron X ກຳລັງເບິ່ງແຍງ</h2>
     <p>ຕົວຢ່າງລະບົບໃນຫຼາຍຮູບແບບ — ຈາກຫຼັງຄາໂຮງງານ ຮອດສະຖານີສາກລົດໄຟຟ້າ.</p>
   </div>
   <div class="portfolio-grid">
@@ -669,7 +769,7 @@
   </div>
   <div class="dash">
     <div class="dash-chart">
-      <div class="cap"><span>ກຳລັງໄຟຜະລິດ — ມື້ນີ້</span><span>512.4 kW</span></div>
+      <div class="cap"><span>ກຳລັງໄຟຜະລິດ — ມື້ນີ້</span><span>8.6 MW</span></div>
       <svg viewBox="0 0 500 180" width="100%" height="180">
         <polyline points="0,150 40,120 80,90 120,60 160,40 200,30 240,25 280,35 320,55 360,80 400,110 440,135 480,150" fill="none" stroke="#00d4ff" stroke-width="2.5"/>
         <polyline points="0,150 40,120 80,90 120,60 160,40 200,30 240,25 280,35 320,55 360,80 400,110 440,135 480,150 480,180 0,180" fill="rgba(0,212,255,0.08)" stroke="none"/>
@@ -678,8 +778,8 @@
     </div>
     <div class="dash-side">
       <div class="side-card"><span class="l">ແບັດເຕີຣີ SOC</span><span class="v">78%</span></div>
-      <div class="side-card"><span class="l">ໂຫຼດປັດຈຸບັນ</span><span class="v">344 kW</span></div>
-      <div class="side-card"><span class="l">ປະຢັດມື້ນີ້</span><span class="v up">+2.1M ກີບ</span></div>
+      <div class="side-card"><span class="l">ໂຫຼດປັດຈຸບັນ</span><span class="v">10.0 MW</span></div>
+      <div class="side-card"><span class="l">ປະຢັດມື້ນີ້</span><span class="v up">+41.6M ກີບ</span></div>
       <div class="side-card"><span class="l">ສະຖານະລະບົບ</span><span class="v up">ປົກກະຕິ</span></div>
     </div>
   </div>
@@ -688,8 +788,8 @@
 <section>
   <div class="stats">
     <div class="stat"><div class="n">24/7</div><div class="l">ການຕິດຕາມແບບ real-time</div></div>
-    <div class="stat"><div class="n">4</div><div class="l">Inverter ທີ່ເຊື່ອມຕໍ່ຢູ່</div></div>
-    <div class="stat"><div class="n">56</div><div class="l">Strings ພາຍໃຕ້ການເບິ່ງແຍງ</div></div>
+    <div class="stat"><div class="n">148</div><div class="l">Inverter ທີ່ເຊື່ອມຕໍ່ຢູ່</div></div>
+    <div class="stat"><div class="n">1,240</div><div class="l">Strings ພາຍໃຕ້ການເບິ່ງແຍງ</div></div>
     <div class="stat"><div class="n">&lt;5min</div><div class="l">ເວລາແຈ້ງເຕືອນບັນຫາ</div></div>
   </div>
 </section>
@@ -699,8 +799,8 @@
     <h2>ພ້ອມໃຫ້ AI ເບິ່ງແຍງລະບົບພະລັງງານຂອງທ່ານແລ້ວບໍ?</h2>
     <p>ພວກເຮົາພ້ອມສາທິດ Enertron X ກັບຂໍ້ມູນຈິງຂອງໂຄງການທ່ານ.</p>
     <div class="hero-actions">
-      <a href="#" class="btn-primary">ຈອງເດໂມ</a>
-      <a href="#" class="btn-ghost">ດາວໂຫຼດ Spec Sheet</a>
+      <a href="#" class="btn-primary">ດາວໂຫຼດ Spec Sheet</a>
+      <a href="company-profile.pdf" class="btn-ghost" download>ດາວໂຫຼດ Company Profile</a>
     </div>
   </div>
 </section>
@@ -712,6 +812,65 @@
   </div>
   <div>© 2026 Enertron X · Vientiane, Lao PDR</div>
 </footer>
+
+
+<script>
+(function(){
+  var DICT = {"ບໍລິການ": "Services", "ຄວາມສາມາດ": "Capabilities", "ວິທີເຮັດວຽກ": "How it works", "ໂຄງການ": "Projects", "ແດັຊບອດ": "Dashboard", "ນັດເບິ່ງເດໂມ": "Book a demo", "Enertron X ເຊື່ອມຕໍ່ລະບົບໂຊລ່າ, ແບັດເຕີຣີ ແລະ ໂຫຼດຂອງໂຮງງານ ເຂົ້າກັບສະໝອງ AI ໜຶ່ງດຽວ — ພະຍາກອນ, ປັບແຕ່ງ ແລະ ປ້ອງກັນບັນຫາ ກ່ອນມັນເກີດຂຶ້ນ.": "Enertron X links your solar, batteries and plant loads to a single AI brain — forecasting, tuning and catching problems before they happen.", "ເລີ່ມນຳໃຊ້ Enertron X": "Get started with Enertron X", "ເບິ່ງວິທີເຮັດວຽກ": "See how it works", "ກຳລັງທີ່ຄວບຄຸມຢູ່": "Capacity under management", "Uptime ລະບົບ": "System uptime", "ຄ່າໄຟ ຫຼັງນຳໃຊ້": "Energy bill after rollout", "ໂຊລ່າ": "Solar", "ແບັດເຕີຣີ": "Battery", "ສາຍສົ່ງ EDL": "EDL grid", "ໂຮງງານ / ໂຫຼດ": "Plant / load", "ບໍລິການພະລັງງານ ຄົບວົງຈອນ": "End-to-end energy services", "ຈາກແຫຼ່ງພະລັງງານໜ້າຫຼັງຄາ ຮອດເຕັກໂນໂລຊີແຫ່ງອະນາຄົດ — Enertron X ອອກແບບ, ຕິດຕັ້ງ ແລະ ບໍລິຫານໃຫ້ທັງໝົດ.": "From rooftop generation to next-generation technology, Enertron X designs, installs and operates all of it.", "ໂຊລ່າເຊວ (Solar PV)": "Solar PV", "ອອກແບບ ແລະ EPC ລະບົບໂຊລ່າຫຼັງຄາ ແລະ ພື້ນດິນ ຕັ້ງແຕ່ຂະໜາດເຮືອນ ຮອດໂຮງງານອຸດສາຫະກຳ ພ້ອມການຄິດໄລ່ string/SLD ຢ່າງລະອຽດ.": "Design and EPC for rooftop and ground-mount solar, from homes to industrial plants, with detailed string and SLD calculations.", "ພະລັງງານລົມ (Wind)": "Wind power", "ສຳຫຼວດຄວາມໄວລົມ ແລະ ອອກແບບລະບົບກັງຫັນລົມຂະໜາດນ້ອຍ-ກາງ ເພື່ອຜະສົມກັບໂຊລ່າ ໃຫ້ໄດ້ໄຟຕະຫຼອດ 24 ຊົ່ວໂມງ.": "Wind resource surveys and small-to-mid turbine design, paired with solar for round-the-clock supply.", "ບໍລິການທີ່ປຶກສາ ແລະ ສຶກສາຄວາມເປັນໄປໄດ້ ສຳລັບພະລັງງານນິວເຄຼຍຂະໜາດນ້ອຍ ເປັນແຫຼ່ງພະລັງງານພື້ນຖານແຫ່ງອະນາຄົດ.": "Advisory and feasibility work on small-scale nuclear as a future baseload source.", "ລະບົບບ້ານອັດສະລິຍະ ທີ່ AI ຄວບຄຸມໄຟ, ແອ ແລະ ອຸປະກອນຕ່າງໆ ໃຫ້ເຂົ້າກັນກັບການຜະລິດໂຊລ່າ ເພື່ອປະຢັດຄ່າໄຟສູງສຸດ.": "Smart-home systems where AI matches lighting, cooling and appliances to live solar output for maximum savings.", "ຊັບພອດ Data Center": "Data center support", "ອອກແບບ ແລະ ບໍລິຫານລະບົບພະລັງງານ ແລະ ຄວາມເຢັນສຳລັບ Data Center ໃຫ້ເຮັດວຽກຢ່າງຕໍ່ເນື່ອງ ບໍ່ຢຸດຊະງັກ.": "Design and operation of power and cooling for data centers, built to run without interruption.", "ລະບົບຈ່າຍໄຟ (Power)": "Power systems", "ອອກແບບ UPS, ແຫຼ່ງໄຟສຳຮອງ ແລະ ເສັ້ນທາງໄຟຄູ່ (dual feed) ພ້ອມ AI ຕິດຕາມການໃຊ້ໄຟແບບ real-time ເພື່ອຮັບປະກັນ uptime ສູງສຸດ.": "UPS, backup supply and dual-feed paths, with AI watching consumption in real time to protect uptime.", "ລະບົບຫຼໍ່ເຢັນ (Cooling)": "Cooling systems", "ອອກແບບລະບົບ precision cooling ແລະ ຈັດວາງ airflow ໃນຫ້ອງ server ໂດຍ AI ຊ່ວຍປັບອຸນຫະພູມອັດຕະໂນມັດ ຫຼຸດ PUE ແລະ ຄ່າໄຟ.": "Precision cooling and server-room airflow layout, with AI trimming temperature automatically to lower PUE and cost.", "ໜຶ່ງແພລດຟອມ ຄວບຄຸມພະລັງງານທັງໝົດ": "One platform for all your energy", "Enertron X ອ່ານຂໍ້ມູນຈາກ inverter, ແບັດເຕີຣີ ແລະ ມິເຕີ ແບບ real-time ແລ້ວໃຫ້ AI ຕັດສິນໃຈແທນທ່ານ.": "Enertron X reads inverters, batteries and meters in real time, then lets AI make the call for you.", "ພະຍາກອນການຜະລິດ": "Generation forecasting", "ໂມເດວ AI ຮຽນຮູ້ຮູບແບບອາກາດ ແລະ ການຜະລິດ ເພື່ອຄາດຄະເນກຳລັງໄຟລ່ວງໜ້າ 24–72 ຊົ່ວໂມງ.": "AI models learn weather and output patterns to project power 24–72 hours ahead.", "ບໍລິຫານແບັດເຕີຣີ": "Battery management", "ຕັດສິນໃຈ charge/discharge ອັດຕະໂນມັດ ຕາມລາຄາໄຟ ແລະ ຄວາມຕ້ອງການໂຫຼດ ເພື່ອລົດຄ່າໃຊ້ຈ່າຍ.": "Automatic charge and discharge decisions based on tariffs and load demand to cut cost.", "ແຈ້ງເຕືອນຄວາມຜິດປົກກະຕິ": "Anomaly alerts", "ຈັບອາການຜິດປົກກະຕິຂອງ string, inverter ຫຼື sensor ກ່ອນມັນກາຍເປັນຄວາມເສຍຫາຍ.": "Catches odd behaviour in a string, inverter or sensor before it turns into damage.", "ຕິດຕາມ Carbon / I-REC": "Carbon and I-REC tracking", "ຄິດໄລ່ CO₂ ທີ່ຫຼຸດຜ່ອນໄດ້ ແລະ ຂໍ້ມູນສະໜັບສະໜູນສຳລັບໃບຢັ້ງຢືນ I-REC ອັດຕະໂນມັດ.": "Calculates avoided CO₂ and assembles the supporting data for I-REC certificates automatically.", "ຈາກຂໍ້ມູນດິບ ສູ່ການຕັດສິນໃຈ ໃນ 3 ຂັ້ນຕອນ": "From raw data to decisions in three steps", "ບໍ່ຕ້ອງປ່ຽນຮາດແວທີ່ມີຢູ່ແລ້ວ — Enertron X ເຊື່ອມຕໍ່ຜ່ານໂປຣໂຕຄອນມາດຕະຖານ.": "No hardware swap needed — Enertron X connects over standard protocols.", "ເຊື່ອມຕໍ່ອຸປະກອນ": "Connect the equipment", "ດຶງຂໍ້ມູນຈາກ Huawei FusionSolar, ມິເຕີ ແລະ BMS ຂອງແບັດເຕີຣີ ຜ່ານ Modbus/API ໂດຍກົງ.": "Pulls data from Huawei FusionSolar, meters and battery BMS directly over Modbus or API.", "AI ຮຽນຮູ້ຮູບແບບ": "AI learns the pattern", "ວິເຄາະຮູບແບບການໃຊ້ໄຟ, ອາກາດ ແລະ ລາຄາໄຟ ເພື່ອສ້າງແບບຈຳລອງສະເພາະຂອງແຕ່ລະໄຊດ໌.": "Analyses consumption, weather and tariffs to build a model specific to each site.", "ຕັດສິນໃຈ ແລະ ແຈ້ງເຕືອນ": "Act and alert", "ສັ່ງງານແບັດເຕີຣີ, ປັບໂຫຼດ ຫຼື ແຈ້ງທີມງານ O&M ອັດຕະໂນມັດ ຜ່ານ Line/Email.": "Dispatches the battery, shifts load or notifies the O&M team automatically via Line or email.", "ຕົວຢ່າງລະບົບໃນຫຼາຍຮູບແບບ — ຈາກຫຼັງຄາໂຮງງານ ຮອດສະຖານີສາກລົດໄຟຟ້າ.": "A sample of systems in service, from factory rooftops to EV charging hubs.", "ໂຮງງານຜະລິດ — ນະຄອນຫຼວງວຽງຈັນ": "Manufacturing plant — Vientiane", "ລະບົບໂຊລ່າຫຼັງຄາຂະໜາດໃຫຍ່ ຄວບຄຸມ inverter ຫຼາຍໜ່ວຍພ້ອມກັນ ດ້ວຍ AI scheduling.": "Large rooftop solar array running several inverters together under AI scheduling.", "ກຳລັງຕິດຕັ້ງ": "Installed capacity", "ລະບົບແບັດເຕີຣີສະສົມພະລັງງານ": "Battery energy storage system", "Enertron X ຕັດສິນໃຈ charge/discharge ອັດຕະໂນມັດ ຕາມກຣາຟລາຄາໄຟ ແລະ ໂຫຼດຈິງ.": "Enertron X charges and discharges automatically against the tariff curve and actual load.", "ຄວາມຈຸ": "Capacity", "ສະຖານີສາກລົດໄຟຟ້າ": "EV charging station", "ຈັດຄິວການສາກຕາມກຳລັງໂຊລ່າທີ່ຜະລິດໄດ້ຈິງ ຫຼຸດການດຶງໄຟຈາກສາຍສົ່ງໃນຊົ່ວໂມງເລັ່ງດ່ວນ.": "Queues charging against live solar output, cutting grid draw during peak hours.", "ຫົວສາກ DC": "DC connectors", "ກຳລັງລວມ": "Total power", "ໄຟຈາກໂຊລ່າ": "Solar-supplied", "ເບິ່ງລະບົບຂອງທ່ານ ແບບໂປ່ງໃສ": "See your system, clearly", "ແດັຊບອດດຽວ ສຳລັບຜູ້ບໍລິຫານ ແລະ ວິສະວະກອນ O&M.": "One dashboard for managers and O&M engineers.", "ກຳລັງໄຟຜະລິດ — ມື້ນີ້": "Power generated — today", "ແບັດເຕີຣີ SOC": "Battery SOC", "ໂຫຼດປັດຈຸບັນ": "Current load", "ປະຢັດມື້ນີ້": "Saved today", "ສະຖານະລະບົບ": "System status", "ປົກກະຕິ": "Normal", "ການຕິດຕາມແບບ real-time": "Real-time monitoring", "Inverter ທີ່ເຊື່ອມຕໍ່ຢູ່": "Inverters connected", "Strings ພາຍໃຕ້ການເບິ່ງແຍງ": "Strings monitored", "ເວລາແຈ້ງເຕືອນບັນຫາ": "Alert response time", "ພ້ອມໃຫ້ AI ເບິ່ງແຍງລະບົບພະລັງງານຂອງທ່ານແລ້ວບໍ?": "Ready to put AI in charge of your energy?", "ພວກເຮົາພ້ອມສາທິດ Enertron X ກັບຂໍ້ມູນຈິງຂອງໂຄງການທ່ານ.": "We can demo Enertron X against your own project data.", "ດາວໂຫຼດ Spec Sheet": "Download spec sheet", "ເພີ່ມພູນຊີວິດ": "Enriching life", "ແຫ່ງອະນາຄົດ": "for the future", "35 ໂຄງການ ທີ່ Enertron X ກຳລັງເບິ່ງແຍງ": "35 projects under Enertron X", "+41.6M ກີບ": "+41.6M LAK", "ດາວໂຫຼດ Company Profile": "Download company profile"};
+  var TITLES = {"lo": "Enertron X — ພະລັງງານ ຂັບເຄື່ອນດ້ວຍ AI", "en": "Enertron X — AI-driven energy"};
+
+  function key(s){ return s.replace(/[\u200B-\u200D\uFEFF]/g,'').replace(/\s+/g,' ').trim(); }
+
+  var nodes = [];
+  (function collect(root){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        var p = n.parentNode;
+        if(!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName.toLowerCase();
+        if(tag==='script'||tag==='style') return NodeFilter.FILTER_REJECT;
+        if(p.closest && p.closest('.lang-toggle')) return NodeFilter.FILTER_REJECT;
+        return key(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var n; while((n = walker.nextNode())){
+      var k = key(n.nodeValue);
+      if(DICT[k]) nodes.push({node:n, lo:n.nodeValue, en:n.nodeValue.replace(k.length?n.nodeValue.trim():'', DICT[k])});
+    }
+  })(document.body);
+
+  // rebuild EN strings preserving surrounding whitespace
+  nodes.forEach(function(it){
+    var raw = it.lo;
+    var lead = raw.match(/^\s*/)[0];
+    var tail = raw.match(/\s*$/)[0];
+    it.en = lead + DICT[key(raw)] + tail;
+  });
+
+  var buttons = document.querySelectorAll('.lang-toggle button');
+
+  function setLang(lang){
+    nodes.forEach(function(it){ it.node.nodeValue = (lang === 'en') ? it.en : it.lo; });
+    document.documentElement.lang = lang;
+    if(TITLES[lang]) document.title = TITLES[lang];
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+    try{ localStorage.setItem('enx-lang', lang); }catch(e){}
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+  });
+
+  var saved = null;
+  try{ saved = localStorage.getItem('enx-lang'); }catch(e){}
+  if(!saved){
+    saved = (navigator.language || '').toLowerCase().indexOf('lo') === 0 ? 'lo' : 'en';
+  }
+  setLang(saved);
+})();
+</script>
 
 </body>
 </html>
